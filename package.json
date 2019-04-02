@@ -1,0 +1,14 @@
+{
+  "name": "decryptoid",
+  "version": "1.0.0",
+  "description": "A cryptographic suite to decrypt/encrypt files",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nader Carun",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
