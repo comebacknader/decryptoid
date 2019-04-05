@@ -1,0 +1,58 @@
+body {
+	margin:0;
+}
+
+.container {
+	display: grid;
+	grid-template-rows: 60px auto 60px;
+	grid-template-areas: 
+		"header"
+		"body"
+		"footer";
+	height: 100vh;
+}
+
+.header {
+	display:grid;
+	grid-template-columns:repeat(9, 1fr);
+	border-bottom:1px solid #A3A3A3;
+}
+
+
+#login_link {
+	color:#503434;
+	font-size:18px;
+	font-weight:normal;
+	grid-column-start:8;
+	grid-column-end:9;
+	align-self:center;
+	justify-self:end;
+}
+
+#signup_link {
+	color:#503434;
+	font-size:18px;
+	grid-column-start:9;
+	grid-column-end:10;	
+	font-weight:normal;
+	justify-self:center;	
+	align-self:center;
+}
+
+.home_body {
+	display: grid;
+	grid-area: body;
+	background-color:#F7EE8B;
+}
+
+.footer {
+	border-top:1px solid #A3A3A3;
+}
+
+/* Taken from: https://www.cssfontstack.com/Helvetica */
+h3 {
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif; 
+	font-size: 14px; font-style: normal; 
+	font-variant: normal;
+	line-height: 15.4px; 
+}
