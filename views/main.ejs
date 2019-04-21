@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Decryptoid | Main </title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+</head>
+<body>
+	<div class="container">
+		<section class="main_header">
+			<a href="/" id="header_logo">DECRYPTOID</a>
+			<a href="/logout" id="logout_link"> LOG OUT </a>
+		</section>
+		<section class="main_body">
+			<div class="main_center_box">
+				<h1>List of Encrypted/Decrypted Files</h1>
+				<div class="list_of_files_box">
+					<!-- Need to be an ever expanding list-->
+					<% if (files) { %>
+					<% for (let i = 0; i < files.length; i++) { %>
+					<a href="/file/<%= files[i].filename %>" style="text-decoration:none;color:black;">
+						<div class="each_file_box">
+							<p class="each_file_filename"> <%= files[i].filename %></p>
+							<!-- <p class="each_file_timestamp"> 05/16/2019 </p> -->
+						</div>
+					</a>
+					<% } %>
+					<% } else { %>
+					<h3> No Files Uploaded </h3>
+					<% } %>
+					<a href="/upload" class="upload_btn" style="margin-top:10px"> UPLOAD FILE</a> 
+				</div>
+			</div>
+		</section>
+		<section class="main_footer">
+		</section>
+	</div>
+</body>
+</html>
