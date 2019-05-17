@@ -273,9 +273,19 @@ h2 {
 	margin-right:20px;
 }
 
+#logout_button {
+	border:0px;
+	font-size:16px;
+	background-color:#F7EE8B;
+}
+
+#logout_button:hover {
+	cursor: pointer;
+}
+
 .upload_form {
 	display:grid;
-	grid-template-rows:350px 20px 30px 20px 40px 40px 50px;
+	grid-template-rows:350px 20px 30px 20px 40px 40px 40px 50px;
 	justify-items:center;
 	align-items:center;	
 }
@@ -287,6 +297,10 @@ h2 {
 }
 
 #choose_file_label {
+	font-size:14px;
+}
+
+#choose_alg_dropdown {
 	align-self:start;
 }
 

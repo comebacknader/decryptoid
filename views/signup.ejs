@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Decryptoid | Sign Up</title>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+	<script src="/javascript/validate.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -24,7 +25,8 @@
 						<% if (error) { %>
 							<h1> <%= error %> </h1>
 						<% } %>
-						<form action="/signup" method="post" id="login_form">
+						<form action="/signup" method="post" id="login_form"
+						onsubmit="return validateSignup(this)">
 							<input class="auth_input" type="text" name="email" placeholder="Email">
 							<label class="auth_label"> Required </label>
 							<input class="auth_input" type="text" name="username" placeholder="Username">
