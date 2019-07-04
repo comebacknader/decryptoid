@@ -13,10 +13,6 @@ const fs = require('fs')
 const process = require('process')
 const moment = require('moment')
 
-// Validation variables
-const minLength = 5
-const maxLength = 50
-
 // With MySQL version 8 special plug-in 
 // called "mysql_native_password" required
 const mysql = require('mysql')
@@ -33,6 +29,7 @@ connection.connect(function(err) {
 		throw err
 	} else {
 		// Successfully connected to the database
+		console.log("Successfully connected to database!")
 	}
 }) 
 
@@ -230,7 +227,6 @@ app.post('/upload', isAuthenticated, (req, res) => {
 
 	if (algorithm !== simpleSub && algorithm !== doubleTrans
 		&& algorithm !== rc4) {
-		console.log("Error Selecting algorithm: " + req.body.algorithm)
 		return res.render('upload', {error: 'Ivalid algorithm selected.'})
 	}
 	const cipher = algorithm
@@ -240,7 +236,6 @@ app.post('/upload', isAuthenticated, (req, res) => {
 	// Check if file was uploaded or text uploaded
 	// Check if they included their filename
 	let filename = validator.escape(req.body.file_name)
-	console.log(req.body)
 	const crypt_content = validator.escape(req.body.crypt_content)
 	if (crypt_content === '') {
 		
@@ -252,7 +247,6 @@ app.post('/upload', isAuthenticated, (req, res) => {
 		// If user didn't enter a filename
 		// Use filename from file
 		if (filename === '') {
-			console.log("Title for uploaded file: " + req.files.name)
 			filename = validator.escape(req.files.name)
 		}
 
@@ -347,18 +341,6 @@ app.get('/file/:name', isAuthenticated, (req, res) => {
 // Starts the server up
 app.listen(port, () => {
 	console.log(`Decryptoid app listening on port ${port}!`)
-  let text = "Nader is the king of the world!"
-
-	console.log("Plaintext encrypted: " + simpleSubstitution(text, "encrypt"))
-  console.log("Ciphertext decrypted: " + simpleSubstitution("Obefs!jt!ljoh!pg!uif!xpsme\"", "decrypt"))
-  console.log("Plaintext transposed: " + doubleTransposition(text))
-  console.log("Ciphertext transposed: " + doubleTransposition("i  staNedrgno fehk iowlrdt eh !"))
-
-  // RC4
-  console.log("Plaintext rc4ed: " + validator.escape(rc4Algo(text)))
-  console.log("Ciphertext rc4'ed: " + rc4Algo(rc4Algo(text)))
-
-
 })
 
 
@@ -377,10 +359,14 @@ function isAuthenticated(req, res, next) {
 
 // Validates the length of username, email, and password
 function validateLength(content, name) {
+	// Validation variables
+	const minLength = 5
+	const maxLength = 50
+
 	if (content.length < 5) {
 		return `${name} too short. Must be greater than ${minLength} characters.`
 	} else if (content.length > 50) {
-		return `${name} too long. Must be shorter than ${minLength} characters.`
+		return `${name} too long. Must be shorter than ${maxLength} characters.`
 	} else {
 		return ''
 	}
@@ -393,13 +379,10 @@ function runAlgos(contents, algorithm, operation) {
 	const rc4 = 'rc4'	
 	let content;
 	if (algorithm === simpleSub) {
-		console.log("Implementing Simple Sub")
 		content = validator.escape(simpleSubstitution(contents, operation))
 	} else if (algorithm === doubleTrans) {
-		console.log("Implementing Double Transpo")
 		content = validator.escape(doubleTransposition(contents))
 	} else {
-		console.log("Implementing RC4")
 		content = validator.escape(rc4Algo(contents))
 	}
 	return content			
