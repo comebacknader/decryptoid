@@ -48,21 +48,14 @@ app.use(session({
 }))
 
 app.use(fileUpload())
-app.use(express.static('public'))
+
+app.use(express.static('build'))
+
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
-app.set('views', './views')
-app.set('view engine', 'ejs')
-
-// The landing page that just has title and log in / sign up links
-app.get('/', (req, res) => {
-	res.render('home')
-})
-
-// Logging in a new user page
-app.get('/login', (req, res) => {
-	res.render('login', {error: ''})		
+app.get('/*', (req, res) => {
+	res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
 // Logging in a new user
