@@ -1,6 +1,6 @@
 import React from 'react'
 import {LoginLinks, LogoutLinks} from './AuthLinks'
-import './public/stylesheets/main.css'
+import '../public/stylesheets/main.css'
 
 class Header extends React.Component {
     constructor(props) {
