@@ -62,21 +62,24 @@ h2 {
 	grid-template-columns:1fr 1fr 1fr 1fr;
 	grid-template-rows:1fr 1fr 1fr;
 	grid-area: body;	
-	background-color:#F7EE8B;
+	background-image: url("../images/bg-image.jpg");
+	background-size: cover;
 }
 
 .home_center_box {
 	display:grid;
-	grid-template-rows:90px 40px 40px 50px auto;
+	grid-template-rows:90px 40px 50px auto;
 	grid-column-start:2;
 	grid-column-end:4;
 	grid-row-start: 1;
 	grid-row-end: 3;
 	align-self:center;
+	/* background-color:rgba(255,255,255,0.5); */
+	padding:10px;
 }
 
 #home_title {
-	color:#4D4545;
+	color:white;
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif; 
 	font-size:68px;	
 	justify-self:center;
@@ -84,14 +87,14 @@ h2 {
 }
 
 #home_tagline1 {
-	color:#4D4545;
+	color:white;
 	justify-self:center;
 	margin:0;
 	font-style:italic;
 }
 
 #home_tagline2 {
-	color:#4D4545;
+	color:white;
 	justify-self:center;
 	font-size:24px;
 	margin:0;
