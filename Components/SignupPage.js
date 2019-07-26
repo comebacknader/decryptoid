@@ -1,18 +1,26 @@
-import React from 'react';
+import React from "react";
+import { connect } from "react-redux";
+import { signupUser } from "../redux/actions";
 
 class SignupPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = { email: '', username: '', password: '' };
         this.submitSignup = this.submitSignup.bind(this);
+        this.handleUpdate = this.handleUpdate.bind(this);
     }
 
-    submitSignup(event){
+    handleUpdate(input){
+        // update the state
+        console.log(input)
+        this.setState({ input })
+    }
+
+    submitSignup(){
        // Validate the form 
        event.preventDefault();
-       console.log(event);
-       // Send the values to the database
-       // Create an action creator that will post to the database
+       console.log();
+       this.props.signupUser()
     }
 
     render() {
@@ -27,13 +35,23 @@ class SignupPage extends React.Component {
                     </div>
                     <div>
                         <form id="login_form" onSubmit={this.submitSignup}>
-							<input className="auth_input" type="text" name="email" placeholder="Email" />
+
+							<input className="auth_input" type="text" name="email" placeholder="Email"
+                                onChange={ e => this.handleUpdate(e) }
+                                value={ this.state.email } />
 							<label className="auth_label"> Required </label>
-							<input className="auth_input" type="text" name="username" placeholder="Username" />
+
+							<input className="auth_input" type="text" name="username" placeholder="Username" 
+                                onChange={ e => this.handleUpdate(e) }
+                                value={ this.state.username} />
 							<label className="auth_label"> Required </label>
-							<input className="auth_input" type="password" name="password" placeholder="Password" />
+
+							<input className="auth_input" type="password" name="password" placeholder="Password" 
+                                onChange={ e => this.handleUpdate(e) }
+                                value={ this.state.password } />
 							<label className="auth_label"> Required </label>					
-							<button className="auth_btn"> SIGN UP </button>
+
+							<button className="auth_btn" onClick={this.submitSignup}> SIGN UP </button>
                         </form>
                     </div>
                 </div>
@@ -43,4 +61,7 @@ class SignupPage extends React.Component {
     }
 }
 
-export default SignupPage;
+export default connect(
+    null,
+    { signupUser }
+)(SignupPage)

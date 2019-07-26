@@ -10,15 +10,13 @@ class Header extends React.Component {
 
     render () {
         const { isLoggedIn } = this.props;
-        let authLinks;
-        if (!isLoggedIn) {
-            authLinks = <LoginLinks />;
-        } else {
-            authLinks = <LogoutLinks />;
-        }
         return ( 
             <div className="header">
-                {authLinks}
+                { !isLoggedIn ?
+                    <LoginLinks />
+                :
+                    <LogoutLinks />
+                }
             </div>
         );
     }
