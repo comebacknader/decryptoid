@@ -29,51 +29,39 @@ h2 {
 }
 
 .header {
-	display:grid;
-	grid-template-columns:repeat(9, 1fr);
 	border-bottom:1px solid #A3A3A3;
+	display:flex;
+	flex-flow: row wrap;
+	justify-content: flex-end;
 }
 
-
-#login_link {
+.header a {
+	display:block;
+	padding: 1em;
 	color:#503434;
 	font-size:18px;
 	font-weight:normal;
-	grid-column-start:8;
-	grid-column-end:9;
-	align-self:center;
-	justify-self:end;
-	text-decoration:none;
-}
-
-#signup_link {
-	color:#503434;
-	font-size:18px;
-	grid-column-start:9;
-	grid-column-end:10;	
-	font-weight:normal;
-	justify-self:center;	
-	align-self:center;
 	text-decoration:none;
 }
 
 .home_body {
 	display: grid;
-	grid-template-columns:1fr 1fr 1fr 1fr;
-	grid-template-rows:1fr 1fr 1fr;
+	grid-template-columns:0.2fr 0.6fr 0.2fr;
+	grid-template-rows:0.2fr 0.6fr 0.2fr;
 	grid-area: body;	
 	background-image: url("../images/bg-image.jpg");
 	background-size: cover;
 }
 
 .home_center_box {
-	display:grid;
-	grid-template-rows:90px 40px 50px auto;
 	grid-column-start:2;
-	grid-column-end:4;
-	grid-row-start: 1;
+	grid-column-end:3;
+	grid-row-start: 2;
 	grid-row-end: 3;
-	align-self:center;
+	display:flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: center;
 	/* background-color:rgba(255,255,255,0.5); */
 	padding:10px;
 }
@@ -82,22 +70,14 @@ h2 {
 	color:white;
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif; 
 	font-size:68px;	
-	justify-self:center;
 	margin:0;
 }
 
-#home_tagline1 {
+.home_tagline {
 	color:white;
-	justify-self:center;
-	margin:0;
-	font-style:italic;
-}
-
-#home_tagline2 {
-	color:white;
-	justify-self:center;
-	font-size:24px;
-	margin:0;
+	font-size:20px;
+	margin:15px;
+	font-weight:bold;
 }
 
 #home_btn {
@@ -106,10 +86,10 @@ h2 {
 	text-decoration:none;
 	cursor:pointer;
 	width:200px;
+	border: 1px solid #4D4545;
 	padding:15px;
 	background-color:#4D4545;
 	color:white;
-	justify-self:center;
 	margin:0;
 	border-radius:10px;
 	transition:0.3s;
@@ -120,9 +100,45 @@ h2 {
 	background-color: #503434;
 }
 
-
 .footer {
 	border-top:1px solid #A3A3A3;
+}
+
+@media all and (max-width:970px) {
+	.home_body {
+		grid-template-columns:0fr;
+	}
+	
+	.header {
+		justify-content: space-around;
+	}
+
+	#home_title {
+		font-size:44px;
+	}
+
+	.home_tagline {
+		font-size: 18px;
+	}
+
+}
+
+@media all and (max-width:470px) {
+	.container {
+		grid-template-rows: 120px auto 60px;
+	}
+
+	.header {
+		flex-flow: column wrap;
+	}
+	
+	.header a:first-of-type {
+		border-bottom: 1px solid #d4d4d4;
+	}
+
+	#home_btn {
+		display:none;
+	}
 }
 
 /** LOGIN PAGE **/

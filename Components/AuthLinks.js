@@ -1,12 +1,12 @@
-import React from 'react';
-import '../public/stylesheets/main.css';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import "../public/stylesheets/main.css";
 
 export function LoginLinks(props) {
     return (
         <React.Fragment>
-            <Link to="/login" id="login_link"> LOGIN </Link> 
-            <Link to= "/signup" id="signup_link"> SIGN UP </Link> 
+            <Link to="/login"> LOGIN </Link> 
+            <Link to= "/signup"> SIGN UP </Link> 
         </React.Fragment>
     );
 }

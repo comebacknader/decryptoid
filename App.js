@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './redux/store';
-import './public/stylesheets/main.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import "./public/stylesheets/main.css";
 
-import Header from './Components/Header';
-import SplashPage from './Components/SplashPage';
-import LoginPage from './Components/LoginPage';
-import SignupPage from './Components/SignupPage';
+import Header from "./Components/Header";
+import SplashPage from "./Components/SplashPage";
+import LoginPage from "./Components/LoginPage";
+import SignupPage from "./Components/SignupPage";
 
 class App extends React.Component {
     render() {
