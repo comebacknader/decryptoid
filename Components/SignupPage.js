@@ -34,7 +34,7 @@ class SignupPage extends React.Component {
                         <p className="auth_tab_selected"> SIGN UP </p>
                     </div>
                     <div>
-                        <form id="login_form" onSubmit={this.submitSignup}>
+                        <form id="login_form">
 
 							<input className="auth_input" type="text" name="email" placeholder="Email"
                                 onChange={ e => this.handleUpdate(e) }

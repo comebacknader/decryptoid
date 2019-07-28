@@ -87,6 +87,7 @@ h2 {
 	cursor:pointer;
 	width:200px;
 	border: 1px solid #4D4545;
+	font-size: 14px;
 	padding:15px;
 	background-color:#4D4545;
 	color:white;
@@ -98,6 +99,18 @@ h2 {
 #home_btn:hover {
 	opacity:0.8;
 	background-color: #503434;
+}
+
+.try_app_box {
+	display: flex;
+	grid-column-start:2;
+	grid-column-end:3;
+	grid-row-start: 2;
+	grid-row-end: 3;
+}
+
+.try_app_form {
+
 }
 
 .footer {
