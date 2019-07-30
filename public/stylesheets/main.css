@@ -116,23 +116,23 @@ h2 {
 	flex-flow:column nowrap;
 	align-items:center;
 	background-color: white;
-	width: 50%;
+	width: 400px;
 	border-radius: 5px;
 	padding: 10px;
 }
 
+
 #try_input {
 	border:1px solid rgb(140, 196, 142);
-	width:400px;
+	width:100%;
 	background-color: white; 
-	margin:10px;	
 	font-size: 20px;
 }
 
 #try_menu_options {
 	display: flex;
 	flex-flow: row wrap;
-	margin:10px;
+	margin-top:10px;
 }
 
 .try_app_btn {
@@ -140,7 +140,7 @@ h2 {
 	border:1px solid rgb(140, 196, 142);
 	background-color: rgb(140, 196, 142);
 	color:white;
-	margin-left: 30px;
+	margin-left: 20px;
 }
 
 .try_app_btn:hover {
