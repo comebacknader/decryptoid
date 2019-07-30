@@ -18,9 +18,22 @@ class TryAppForm extends React.Component {
         return (
             <div className="try_app_box">
                 <form className="try_app_form">
-                    <button className="try_app_btn" onClick={this.submitCrypt}>
-                        Submit
-                    </button>
+                    <div>
+                        <label htmlFor="try_input" className="visuallyhidden">
+                            Enter Text:
+                        </label>
+                        <input id="try_input" type="text" name="text_to_transform" placeholder="Enter Text" />
+                    </div>
+                    <div id="try_menu_options">
+                        <select>    
+                            <option value="simple-substitution">Simple Substitution</option>
+                            <option value="double-transposition">Double Transposition</option>
+                            <option value="RC4">RC4</option>
+                        </select>
+                        <button className="try_app_btn" onClick={this.submitCrypt}>
+                            Submit
+                        </button>
+                    </div>
                 </form>
             </div>
         ); 

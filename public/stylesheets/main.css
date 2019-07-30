@@ -103,14 +103,59 @@ h2 {
 
 .try_app_box {
 	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
 	grid-column-start:2;
 	grid-column-end:3;
-	grid-row-start: 2;
-	grid-row-end: 3;
+	grid-row-start:2;
+	grid-row-end:3;
 }
 
 .try_app_form {
+	display:flex;
+	flex-flow:column nowrap;
+	align-items:center;
+	background-color: white;
+	width: 50%;
+	border-radius: 5px;
+	padding: 10px;
+}
 
+#try_input {
+	border:1px solid rgb(140, 196, 142);
+	width:400px;
+	background-color: white; 
+	margin:10px;	
+	font-size: 20px;
+}
+
+#try_menu_options {
+	display: flex;
+	flex-flow: row wrap;
+	margin:10px;
+}
+
+.try_app_btn {
+	width: 100px;
+	border:1px solid rgb(140, 196, 142);
+	background-color: rgb(140, 196, 142);
+	color:white;
+	margin-left: 30px;
+}
+
+.try_app_btn:hover {
+	background-color: rgb(117, 163, 117);
+}
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }
 
 .footer {
