@@ -5,3 +5,5 @@ npm install --save-dev webpack webpack-cli webpack-dev-server babel-loader css-l
 npm install react-router-dom
 npm install --save redux
 npm install --save react-redux
+npm install axios
+npm install babel-polyfill

@@ -14,36 +14,36 @@ const process = require('process')
 const moment = require('moment')
 
 const mysql = require('mysql')
-const connection = mysql.createConnection({
-	host	    : login.hn,
-	user      : login.un,
-	password  : login.pw,
-	database  : login.db
-})
+//const connection = mysql.createConnection({
+	//host	    : login.hn,
+	//user      : login.un,
+	//password  : login.pw,
+	//database  : login.db
+//})
 
-connection.connect(function(err) {
-	if (err) {
-		console.error('error connection' + err.stack)
-		throw err
-	} else {
-		// Successfully connected to the database
-		console.log("Successfully connected to database!")
-	}
-}) 
+// connection.connect(function(err) {
+// 	if (err) {
+// 		console.error('error connection' + err.stack)
+// 		throw err
+// 	} else {
+// 		// Successfully connected to the database
+// 		console.log("Successfully connected to database!")
+// 	}
+// }) 
 
 // Disconnects from database should app exit
-process.on('exit', function(){
-	connection.destroy()
-})
+// process.on('exit', function(){
+// 	connection.destroy()
+// })
 
-app.use(session({
-	genid: (req) => { return uuid()} ,
-	store: new FileStore(),
-	secret: login.sessionPWD,
-	resave: false,
-	saveUninitialized: true, 
-	cookie: {maxAge: 60000 * 10}
-}))
+// app.use(session({
+// 	genid: (req) => { return uuid()} ,
+// 	store: new FileStore(),
+// 	secret: login.sessionPWD,
+// 	resave: false,
+// 	saveUninitialized: true, 
+// 	cookie: {maxAge: 60000 * 10}
+// }))
 
 app.use(fileUpload())
 
@@ -55,6 +55,13 @@ app.use(express.urlencoded({extended:true}))
 app.get('/*', (req, res) => {
 	res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
+
+// API endpoint for uploading file
+app.post('/api/upload', (req, res) => {
+	// Validate the form and return json response
+	// Don't save anything in any database 
+});
+
 
 // Logging in a new user
 app.post('/login', (req, res) => {
