@@ -7,3 +7,7 @@ npm install --save redux
 npm install --save react-redux
 npm install axios
 npm install babel-polyfill
+npm install --save-dev jest
+npm install --save-dev chai
+npm install --save-dev chai-http
+npm install --save-dev @babel/register

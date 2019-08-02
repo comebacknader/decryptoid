@@ -69,7 +69,6 @@ app.post('/login', (req, res) => {
 	let pwd = validator.escape(req.body.password)
 
 	// Make sure that credential and password are the right size
-	// validateLength helper function defined near EOF
 	credValidErr = validateLength(credential, "Username/Email")
 	pwdValidErr = validateLength(pwd, "Password")
 	if (credValidErr !== '') {
