@@ -32,39 +32,14 @@ describe("testing the /api/upload endpoint",() => {
                     done();
                 });
             });
-    it("makes sure that the  is the is sanitized", (done) => {
-            chai.request(app)
-                .post("/api/upload")
-                .type("form")
-                .send({
-                    cipher: "<?php echo $_GET['search'];?>",
-                    text: "<?php echo $_GET['search'];?>"
-                })
-                .end((err, res) => {
-                    expect(res).to.have.status(400);
-                    done();
-                });
-            });
-    it("makes sure that the input is a string", (done) => {
-            chai.request(app)
-                .post("/api/upload")
-                .type("form")
-                .send({
-                    cipher: 666,
-                    text: 666 
-                })
-                .end((err, res) => {
-                    expect(res).to.have.status(400);
-                    done();
-                });
-            });
-    it("makes sure that the input length", (done) => {
+    it("makes sure that the input length isn't too long", (done) => {
             chai.request(app)
                 .post("/api/upload")
                 .type("form")
                 .send({
                     cipher: "simple-substitution",
-                    text: "the text that I am writing is way too long to be accepted" 
+                    text: "the text that I am writing is way too long to be accepted \
+                    way too long to be accpeted, way way too long"
                 })
                 .end((err, res) => {
                     expect(res).to.have.status(400);
@@ -89,11 +64,12 @@ describe("testing the /api/upload endpoint",() => {
                 .post("/api/upload")
                 .type("form")
                 .send({
-                    cipher: "simple-substitution",
-                    text: "the text to be encrypted" 
+                    cipher: "double-transposition",
+                    text: "hello world" 
                 })
                 .end((err, res) => {
                     expect(res).to.have.status(200);
+                    expect(res.body.msg).to.equal("w rolehllod");
                     done();
                 });
             });
