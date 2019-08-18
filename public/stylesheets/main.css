@@ -121,12 +121,22 @@ h2 {
 	padding: 10px;
 }
 
+#try_input_box {
+	display:flex;
+	flex-flow:column nowrap;
+	align-items:center;
+}
 
 #try_input {
 	border:1px solid rgb(140, 196, 142);
 	width:100%;
 	background-color: white; 
 	font-size: 20px;
+}
+
+#try_input_errors {
+	color: red;
+	font-size: 14px;
 }
 
 #try_menu_options {

@@ -2,18 +2,36 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const validator = require('validator')
+const logger = require('morgan')
+const mongo = require('mongodb').MongoClient
+const fs = require('fs')
+
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+app.use(logger('combined', { stream: accessLogStream }))
 
 app.use(express.static('dist'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use(function(req, res, next){
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080")
+    res.setHeader("Access-Control-Allow-Origin", "*")
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, HEAD, OPTIONS, DELETE")
     res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type")
-
     next()
 });
+
+const url = "mongodb://localhost:27017"
+let db
+
+// mongo.connect(url, { useNewUrlParser: true }, (err, client) => {
+// 	if (err) {
+// 		console.log(err)
+// 		return
+// 	}
+
+// 	db = client.db("decryptoid")
+// 	client.close()
+// });
 
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, 'dist', 'index.html'))
@@ -48,19 +66,24 @@ app.post('/api/upload', (req, res) => {
     switch(algorithm) {       
         case "simple-substitution":
             encrypted = simpleSubstitution(req.body.text)   
-            break;
+            break
         case "double-transposition":
             encrypted = doubleTransposition(req.body.text)   
-            break;
+            break
         case "RC4":
             encrypted = rc4Algo(req.body.text)
-            break;
+            break
    }
 
-    // Encrypt the value
-    // Return the encrypted text
-    // const cipher = validator.escape()
-    res.status(200).json({ msg: encrypted });
+//    db.collection("encryptions").encryptionsTable.insertOne({message: encrypted}, (err, result) => {
+// 		if (err) {
+// 			console.log(err)
+// 			res.status(400).json({error: "Encryption couldn't be saved."});
+// 		}
+
+// 		res.status(200).json({ msg: encrypted });
+//    });
+   	res.status(200).json({msg: encrypted})
 });
 
 // Helper Functions
@@ -191,4 +214,4 @@ function rc4Algo(content) {
 	return text
 }
 
-module.exports = app;
+module.exports = {app: app, mongo: mongo};
