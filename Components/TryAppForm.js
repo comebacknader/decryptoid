@@ -18,7 +18,7 @@ class TryAppForm extends React.Component {
         return (
              <React.Fragment>
                 <label htmlFor={id} className="visuallyhidden"> {label} </label>
-                <input {...input} placeholder={label} type={type} />
+                <input {...input} id={id} placeholder={label} type={type} />
                 { touched && (error && <span id="try_input_errors">{error}</span>) }
             </React.Fragment>
         );
@@ -29,8 +29,8 @@ class TryAppForm extends React.Component {
         this.setState({ result: true })
         const response = await axios.post(
             'http://localhost:3000/api/upload', {
-                cipher: this.state.cipher,
-                text: this.state.text
+                cipher: formValues.select_cipher,
+                text: formValues.text_to_transform
             })
         this.props.encryptText(response.data.msg);
     }
@@ -49,15 +49,15 @@ class TryAppForm extends React.Component {
                             placeholder="Enter Text" label="Enter Text" />
                     </div>
                     <div id="try_menu_options">
-                        <Field name="select_cipher" component="select">    
+                        <Field name="select_cipher" component="select" id="try_select_cipher">    
                             <option value="simple-substitution">Simple Substitution</option>
                             <option value="double-transposition">Double Transposition</option>
                             <option value="RC4">RC4</option>
                         </Field>
-                        <button className="try_app_btn">
-                            Submit
-                        </button>
                     </div>
+                    <button className="try_app_btn">
+                            Transform
+                    </button>
                 </form>
                 { (this.state.result) && 
                     <div className="try_result_box">

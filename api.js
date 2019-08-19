@@ -41,24 +41,29 @@ app.get('/', (req, res) => {
 app.post('/api/upload', (req, res) => {
     if (isEmpty(req.body)) {
         // I need to log the error to a log file
-       res.status(400).json({error: "There was an error with your request."});
+	   res.status(400).json({error: "There was an error with your request."});
+	   return
     }
 
     if (req.body.cipher === "" || req.body.text === "") {
-        res.status(400).json({error: "Please be sure to choose a cipher and input text."});
+		res.status(400).json({error: "Please be sure to choose a cipher and input text."});
+		return
     } 
 
     if (typeof req.body.cipher !== "string" || typeof req.body.text !== "string") {
-        res.status(400).json({error: "There was an error with your request."})
+		res.status(400).json({error: "There was an error with your request."})
+		return
     }
 
     if (req.body.text.length >= 50) {
-        res.status(400).json({error: "The input must be less than 50 characters long."})
+		res.status(400).json({error: "The input must be less than 50 characters long."})
+		return
     }
 
     let algorithm = req.body.cipher
     if (algorithm !== "simple-substitution" && algorithm !== "double-transposition" && algorithm !== "RC4") {
-        res.status(400).json({error: "The algorithm you selected is incorrect."})
+		res.status(400).json({error: "The algorithm you selected is incorrect."})
+		return
     }
 
     // Determine what encryption algorithm is used

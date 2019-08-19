@@ -118,20 +118,22 @@ h2 {
 	background-color: white;
 	width: 400px;
 	border-radius: 5px;
-	padding: 10px;
+	padding: 20px;
 }
 
 #try_input_box {
 	display:flex;
 	flex-flow:column nowrap;
 	align-items:center;
+	width:100%;
 }
 
 #try_input {
 	border:1px solid rgb(140, 196, 142);
 	width:100%;
 	background-color: white; 
-	font-size: 20px;
+	font-size: 18px;
+	padding:5px;
 }
 
 #try_input_errors {
@@ -145,16 +147,24 @@ h2 {
 	margin-top:10px;
 }
 
+#try_select_cipher {
+	width: 300px;
+	padding: 5px; 
+}
+
 .try_app_btn {
-	width: 100px;
+	width: 300px;
 	border:1px solid rgb(140, 196, 142);
 	background-color: rgb(140, 196, 142);
 	color:white;
-	margin-left: 20px;
+	font-weight: bold;
+	margin-top: 10px;
+	padding: 5px;
 }
 
 .try_app_btn:hover {
 	background-color: rgb(117, 163, 117);
+	cursor: pointer;
 }
 
 .visuallyhidden {
