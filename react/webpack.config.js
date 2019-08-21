@@ -2,7 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-    entry: ['babel-polyfill','./App.js'],
+    entry: ['babel-polyfill','./react/App.js'],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
@@ -17,7 +17,7 @@ module.exports = {
     mode: 'development',
     plugins: [
         new HtmlWebpackPlugin(
-            { template: './home.html'}
+            { template: './react/home.html'}
         )
     ]  
 }

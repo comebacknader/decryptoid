@@ -6,7 +6,7 @@ const logger = require('morgan')
 const mongo = require('mongodb').MongoClient
 const fs = require('fs')
 
-var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs', 'access.log'), { flags: 'a' })
 app.use(logger('combined', { stream: accessLogStream }))
 
 app.use(express.static('dist'))
@@ -34,7 +34,7 @@ let db
 // });
 
 app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+	res.sendFile(path.join(__dirname, 'react', 'dist', 'index.html'))
 });
 
 // API endpoint for uploading file

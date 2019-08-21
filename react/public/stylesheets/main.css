@@ -18,6 +18,10 @@ h2 {
 	line-height: 15.4px; 
 }
 
+.input-error {
+	border: 1px solid red !important;
+}
+
 .container {
 	display: grid;
 	grid-template-rows: 60px auto 60px;

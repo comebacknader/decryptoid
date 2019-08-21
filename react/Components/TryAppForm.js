@@ -18,14 +18,17 @@ class TryAppForm extends React.Component {
         return (
              <React.Fragment>
                 <label htmlFor={id} className="visuallyhidden"> {label} </label>
-                <input {...input} id={id} placeholder={label} type={type} />
-                { touched && (error && <span id="try_input_errors">{error}</span>) }
+                { (touched && error) ?  
+                <React.Fragment>
+                    <input {...input} id={id} className="input-error" placeholder={label} type={type} />
+                    <span id="try_input_errors">{error}</span>
+                </React.Fragment>
+                 : <input {...input} id={id} placeholder={label} type={type} /> }
             </React.Fragment>
         );
     }
 
     async submitCrypt(formValues) {
-        console.log(formValues)
         this.setState({ result: true })
         const response = await axios.post(
             'http://localhost:3000/api/upload', {
