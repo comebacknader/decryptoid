@@ -1,9 +1,7 @@
 const express = require('express')
 const app = express()
 const path = require('path')
-const validator = require('validator')
 const logger = require('morgan')
-const mongo = require('mongodb').MongoClient
 const fs = require('fs')
 
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs', 'access.log'), { flags: 'a' })
@@ -20,19 +18,6 @@ app.use(function(req, res, next){
     next()
 });
 
-const url = "mongodb://localhost:27017"
-let db
-
-// mongo.connect(url, { useNewUrlParser: true }, (err, client) => {
-// 	if (err) {
-// 		console.log(err)
-// 		return
-// 	}
-
-// 	db = client.db("decryptoid")
-// 	client.close()
-// });
-
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, 'react', 'dist', 'index.html'))
 });
@@ -40,7 +25,6 @@ app.get('/', (req, res) => {
 // API endpoint for uploading file
 app.post('/api/upload', (req, res) => {
     if (isEmpty(req.body)) {
-        // I need to log the error to a log file
 	   res.status(400).json({error: "There was an error with your request."});
 	   return
     }
@@ -219,4 +203,4 @@ function rc4Algo(content) {
 	return text
 }
 
-module.exports = {app: app, mongo: mongo};
+module.exports = {app: app};
