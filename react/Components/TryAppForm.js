@@ -10,7 +10,7 @@ import "../public/stylesheets/main.css";
 class TryAppForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { text:'', cipher:'simple-substitution', result: false };
+        this.state = { cipher:'simple-substitution', result: false };
         this.submitCrypt = this.submitCrypt.bind(this);
     }
 
@@ -28,7 +28,33 @@ class TryAppForm extends React.Component {
         );
     }
 
+    renderCipherSelect({ input, type, id, meta: {touched, error}}) {
+        return (
+            <React.Fragment>
+                { (touched && error) ?
+                    <React.Fragment>
+                    <select {...input} id={id} className="input-error">
+                        <option value="">Select a cipher...</option>   
+                        <option value="simple-substitution">Simple Substitution</option>
+                        <option value="double-transposition">Double Transposition</option>
+                        <option value="RC4">RC4</option>
+                    </select>
+                    <span id="try_input_errors">{error}</span>
+                    </React.Fragment>
+                : 
+                    <select {...input} id={id}>
+                        <option value="">Select a cipher...</option>   
+                        <option value="simple-substitution">Simple Substitution</option>
+                        <option value="double-transposition">Double Transposition</option>
+                        <option value="RC4">RC4</option>
+                    </select>               
+                }
+            </React.Fragment>
+        );
+    }
+
     async submitCrypt(formValues) {
+        console.log(formValues)
         this.setState({ result: true })
         const response = await axios.post(
             'http://localhost:3000/api/upload', {
@@ -52,11 +78,7 @@ class TryAppForm extends React.Component {
                             placeholder="Enter Text" label="Enter Text" />
                     </div>
                     <div id="try_menu_options">
-                        <Field name="select_cipher" component="select" id="try_select_cipher">    
-                            <option value="simple-substitution">Simple Substitution</option>
-                            <option value="double-transposition">Double Transposition</option>
-                            <option value="RC4">RC4</option>
-                        </Field>
+                        <Field name="select_cipher" component={this.renderCipherSelect} id="try_select_cipher" /> 
                     </div>
                     <button className="try_app_btn">
                             Transform
@@ -80,6 +102,9 @@ const validate = (formValues) => {
     }
     if(formValues.text_to_transform && formValues.text_to_transform.length > 30){
         errors.text_to_transform = "The input must be shorter than 30 characters";
+    }
+    if(!formValues.select_cipher) {
+        errors.select_cipher = "You must select a cipher";
     }
     return errors;
 };

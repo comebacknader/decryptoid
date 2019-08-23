@@ -138,7 +138,8 @@ h2 {
 
 #try_menu_options {
 	display: flex;
-	flex-flow: row wrap;
+	flex-flow: column wrap;
+	align-items: center;
 	margin-top:10px;
 }
 

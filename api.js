@@ -64,14 +64,6 @@ app.post('/api/upload', (req, res) => {
             break
    }
 
-//    db.collection("encryptions").encryptionsTable.insertOne({message: encrypted}, (err, result) => {
-// 		if (err) {
-// 			console.log(err)
-// 			res.status(400).json({error: "Encryption couldn't be saved."});
-// 		}
-
-// 		res.status(200).json({ msg: encrypted });
-//    });
    	res.status(200).json({msg: encrypted})
 });
 

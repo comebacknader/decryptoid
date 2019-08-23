@@ -31,3 +31,16 @@ it("has an input that users can type into", () => {
     expect(wrapped.find("input").prop("value")).toEqual("new comment");
 });
 
+it("has an input that gets submitted", () => {
+    wrapped.find("form").simulate("submit", {
+        target: { value: "Nader Carun" }
+    });
+
+    wrapped.update();
+
+    expect(wrapped.find(".try_result_box").html()).toEqual(" some text ")
+});
+// test that the input gets submitted
+// test that encryption appears after submission
+// make sure that the input validates length > 30
+// make sure that the input validates length < 0 (or empty)
