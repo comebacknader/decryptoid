@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 
-import { encryptText } from "../redux/actions";
+import { encryptText } from "../redux/actions/index";
 
 import axios from "axios";
 import "../public/stylesheets/main.css";
@@ -10,7 +10,6 @@ import "../public/stylesheets/main.css";
 class TryAppForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { cipher:'simple-substitution', result: false };
         this.submitCrypt = this.submitCrypt.bind(this);
     }
 
@@ -54,8 +53,7 @@ class TryAppForm extends React.Component {
     }
 
     async submitCrypt(formValues) {
-        console.log(formValues)
-        this.setState({ result: true })
+       /// console.log(formValues)
         const response = await axios.post(
             'http://localhost:3000/api/upload', {
                 cipher: formValues.select_cipher,
@@ -84,7 +82,7 @@ class TryAppForm extends React.Component {
                             Transform
                     </button>
                 </form>
-                { (this.state.result) && 
+                { (this.props.encryption !== "") && 
                     <div className="try_result_box">
                         { this.props.encryption }
                     </div>

@@ -1,4 +1,4 @@
-import { ENCRYPT_TEXT } from "../actionTypes";
+import { ENCRYPT_TEXT } from "../actions/types";
 
 const initialState = {
     encryption : ""
