@@ -21,12 +21,12 @@ class TryAppForm extends React.Component {
                     <input {...input} id={id} className="input-error" placeholder={label} type={type} />
                     <span id="try_input_errors">{error}</span>
                 </React.Fragment>
-                 : <input {...input} id={id} placeholder={label} type={type} /> }
+                 : <input {...input} id={id} placeholder={label} type={type} autoFocus/> }
             </React.Fragment>
         );
     }
 
-    renderCipherSelect({ input, type, id, meta: {touched, error}}) {
+    renderCipherSelect({ input, id, meta: {touched, error}}) {
         return (
             <React.Fragment>
                 { (touched && error) ?

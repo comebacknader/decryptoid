@@ -4,7 +4,16 @@ import Root from "../Root";
 import App from "../App";
 import moxios from "moxios";
 
+let wrapped;
+
 beforeEach(() => {
+
+    wrapped = mount(
+        <Root>
+            <App />
+        </Root>
+    );
+
     moxios.install()
     moxios.stubRequest("http://localhost:3000/api/upload", {
         status: 200,
@@ -18,11 +27,6 @@ afterEach(() => {
 
 it("can enter text and get it encrypted", (done) => {
     // attempt to render the entire application
-    const wrapped = mount(
-        <Root>
-            <App />
-        </Root>
-    );
 
     // find the try app button and click it
     wrapped.find("#home_btn").simulate("click")
