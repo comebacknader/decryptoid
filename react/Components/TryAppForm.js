@@ -4,7 +4,6 @@ import { Field, reduxForm } from "redux-form";
 
 import { encryptText } from "../redux/actions/index";
 
-import axios from "axios";
 import "../public/stylesheets/main.css";
 
 class TryAppForm extends React.Component {
@@ -54,12 +53,7 @@ class TryAppForm extends React.Component {
 
     async submitCrypt(formValues) {
        /// console.log(formValues)
-        const response = await axios.post(
-            'http://localhost:3000/api/upload', {
-                cipher: formValues.select_cipher,
-                text: formValues.text_to_transform
-            })
-        this.props.encryptText(response.data.msg);
+        this.props.encryptText(formValues);
     }
 
 

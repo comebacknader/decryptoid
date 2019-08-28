@@ -44,8 +44,8 @@ it("has a select box that users can choose the cipher", () => {
     expect(wrapped.find("select").prop("value")).toEqual("double-transposition");
 });
 
-it("has the encryption of appear if it is inside the reducer already", () => {
-    expect(wrapped.find(".try_result_box").html()).toEqual(`<div class=\"try_result_box\">Encrypted text</div>`)
+it("has the encryption appear if it is inside the reducer already", () => {
+    expect(wrapped.find(".try_result_box").render().text()).toContain("Encrypted text")
 });
 
 // it("validates the input to not have a length > 30", () => {
