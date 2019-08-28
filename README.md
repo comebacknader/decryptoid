@@ -12,7 +12,7 @@ Change directory into the app directory:
 
 Then run the NodeJS application: 
 
-`node app.js`
+`node server.js`
 
 Then type in your browser URL: 
 
